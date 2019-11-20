@@ -7,7 +7,6 @@ from cards import generate_deck
 MAX_PLAYERS = 4
 HAND_SIZE = 7
 
-
 class Switch:
     """The switch game
 
@@ -15,7 +14,6 @@ class Switch:
 
     >>> game = Switch()
     >>> game.run_game()
-
     Switch objects have the following attributes, which are initialized
     by Switch_setup_round:
 
@@ -54,13 +52,19 @@ class Switch:
 
         i = 0 # current player index
         while True:
-            # process current player's turn 
+            # process current player's turn
             won = self.run_player(self.players[i])
             if won:
                 break
             else:
                 # advance player index depending on self.direction
-                i = i+self.direction % len(self.players)
+                print(i)
+                print(self.direction)
+                print(len(self.players))
+                i = (i+self.direction) % (len(self.players))
+                #This avoids the itteration value being to high and erroring.
+                if i==len(self.players):
+                    i=0
         UI.print_winner_of_game(self.players[i])
 
     def setup_round(self):
@@ -270,3 +274,5 @@ class Switch:
         UI.print_message('{} swaps hands with {}.'.format(p1.name, p2.name))
 
 
+game = Switch()
+game.run_game()
