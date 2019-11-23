@@ -145,7 +145,6 @@ def test_get_normalized_hand_sizes():
     assert s.get_normalized_hand_sizes(s.players[0]) == [1, 2, 3]
     assert s.get_normalized_hand_sizes(s.players[1]) == [2, 3, 1]
     assert s.get_normalized_hand_sizes(s.players[2]) == [3, 1, 2]
-
     s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3', direction=-1)
     assert s.get_normalized_hand_sizes(s.players[0]) == [1, 3, 2]
     assert s.get_normalized_hand_sizes(s.players[1]) == [2, 1, 3]
