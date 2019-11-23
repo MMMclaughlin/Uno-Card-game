@@ -1,6 +1,6 @@
 import user_interface as UI
 import random
-
+import sys
 from cards import generate_deck
 
 
@@ -125,12 +125,15 @@ class Switch:
         UI.print_player_info(player, top_card, hand_sizes)
 
         # determine discardable cards
-        discardable = [card for card in player.hand if self.can_discard]
-
+        discardable=[]
+        for i in range(0,len(player.hand)):
+            if self.can_discard(player.hand[i]):
+                discardable.append(player.hand[i])
+        #discardable = [card for card in player.hand if self.can_discard]
+        print("these cards are discardable",discardable)
         # have player select card
         hands = self.get_normalized_hand_sizes(player)
         card = player.select_card(discardable, hands) if discardable else None
-
         if card:
             # discard card and determine whether player has won
             self.discard_card(player, card)
@@ -186,7 +189,12 @@ class Switch:
         # otherwise either suit or value has to match with top card
         else:
             top_card = self.discards[-1]
-            return card.suit == top_card.suit or card.value == top_card.value
+            if card.suit == top_card.suit:
+                return True
+            elif card.value== top_card.value:
+                return True
+            else:
+                return False
 
     def draw_and_discard(self, player):
         """Draw a card from stock and discard it if possible.

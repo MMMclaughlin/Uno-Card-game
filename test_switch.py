@@ -172,7 +172,7 @@ def test_run_player__adheres_to_skip_flag():
 
 def test_run_player__adheres_to_draw2_flag():
     """run_player adheres to switch.draw2"""
-    s = mock_setup_round(['', ''], '♢5 ♣6 ♣7', '♢3', draw2=True)
+    s = mock_setup_round(['', ''], '♢5 ♣7 ♣8', '♢3', draw2=True)
     player = s.players[1]
     s.run_player(player)
     assert len(player.hand) == 2
