@@ -9,5 +9,7 @@
   
   v1.1.1 [2019-11-20]: Fixed out of range error with itterating between player selection in switch.py's run round function.
   
-  v1.1.1 [2019-11-23]: Fixed the Pick up card function.The function now correctly Loops up to N+1 so that each player  
+  v1.1.2 [2019-11-23]: Fixed the Pick up card function.The function now correctly Loops up to N+1 so that each player  
   Picks up 7 cards instead of 6.
+  
+  v1.1.3 [2019-11-23]: Deck size was 4 cards to big due to duplication of A in the card list inside the cards.py file.
