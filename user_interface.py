@@ -94,14 +94,15 @@ def get_player_information(MAX_PLAYERS):
     # how many AI players? ensure there are at least 2 players
     min = 1 if (len(players) == 1) else 0
     max = MAX_PLAYERS - no_of_players
-    print(f"\nHow many ai players [{min:d}-{max:d}]:")
-    no_of_players = get_int_input(min, max)
-    # for each ai player, get name
-    for name in ai_names[:no_of_players]:
-        if random.choice([True, False]):
-            players.append(SimpleAI(name))
-        else:
-            players.append(SmartAI("Smart "+name))
+    if not no_of_players==MAX_PLAYERS:
+        print(f"\nHow many ai players [{min:d}-{max:d}]:")
+        no_of_players = get_int_input(min, max)
+        # for each ai player, get name
+        for name in ai_names[:no_of_players]:
+            if random.choice([True, False]):
+                players.append(SimpleAI(name))
+            else:
+                players.append(SmartAI("Smart "+name))
 
     return players
 
