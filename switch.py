@@ -26,7 +26,7 @@ class Switch:
     self.direction -- int, either 1 or -1 indicating direction of play.
     """
     def run_game(self):
-        """Run rounds of the game until player decides to exist."""
+        """Run rounds of the game until a player wins the game or chooses to exit."""
         UI.say_welcome()
         # show game menu and run rounds until player decides to exit
         while True:
@@ -42,6 +42,7 @@ class Switch:
 
     def run_round(self):
         """Runs a single round of switch.
+
 
         Contineously calls Switch.run_player for the current player,
         and advances the current player depending on current direction
@@ -69,6 +70,7 @@ class Switch:
 
     def setup_round(self):
         """Initialize a round of switch.
+
 
         Sets the stock to a full shuffled deck of cards, initializes
         the discard pile with its first card, deals all players their
@@ -183,7 +185,15 @@ class Switch:
         return i
 
     def can_discard(self, card):
-        """Return whether card can be discarded onto discard pile."""
+        """Return whether card can be discarded onto discard pile.
+
+        parameters:
+        card -- the card we check against the top card
+
+        Returns:
+            Boolean value if the card matches suit or value with the top card
+
+        """
         # queens and aces can always be discarded
         if card.value in 'QA':
             return True
@@ -260,7 +270,7 @@ class Switch:
         player -- Player for whom to normalize view
 
         Returns:
-        list of integers of sample length than players
+        list of integers of players hand sizes
 
         The list of hand sizes is rotated and flipped so that the
         specified player is always at position 0 and the next player

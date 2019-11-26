@@ -31,9 +31,9 @@
   
   v1.1.11 [2019-11-23]:Fixed the discard-able check which allowed any card to be discarded.
   
-  v1.1.12 [2019-11-23]:Fixed so the question of whether AI players should be added is not shown when the game is already  
+  v1.1.12 [2019-11-26]:Fixed so the question of whether AI players should be added is not shown when the game is already  
   full. 
   
-  
+  v1.1.13 [2019-11-26]: Fixed so that discarding 8 actually skips a players turn 
   
   
