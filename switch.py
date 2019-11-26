@@ -109,6 +109,7 @@ class Switch:
             # return without performing any discard
             self.skip = False
             UI.print_message('{} is skipped.'.format(player.name))
+            return
         elif self.draw2:
             # draw two cards
             picked = self.pick_up_card(player, 2)
