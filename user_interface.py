@@ -135,7 +135,7 @@ def get_player_information(MAX_PLAYERS):
         print("Please enter the name of player " + str(i + 1) + ":")
         players.append(Player(get_string_input()))
 
-    ai_names = ['Angela', 'Bart', 'Charly', 'Dorothy']
+    ai_names = ['Angela', 'Bart', 'Charly']
 
     # how many AI players? ensure there are at least 2 players
     min = 1 if (len(players) == 1) else 0
@@ -149,7 +149,6 @@ def get_player_information(MAX_PLAYERS):
                 players.append(SimpleAI(name))
             else:
                 players.append(SmartAI("Smart "+name))
-
     return players
 
 
