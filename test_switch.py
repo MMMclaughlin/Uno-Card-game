@@ -21,7 +21,6 @@ def mock_setup_round(hands, stock, discards,
                      skip=False, draw2=False, draw4=False, direction=1):
     def str_to_cards(spec):
         return [Card(sv[:1], sv[1:]) for sv in spec.split()]
-
     s = switch.Switch()
     s.players = [MockPlayer(str_to_cards(hand)) for hand in hands]
     s.discards = str_to_cards(discards)
@@ -51,7 +50,7 @@ def test_setup_round__deals_cards():
     s.setup_round()
     assert all(len(p.hand) == 7 for p in s.players)
     assert len(s.discards) == 1
-    assert len(s.stock) == 52-len(s.players)*7-1
+    assert len(s.stock) == 52-(len(s.players)*7)-1
 
 
 def test_pick_up_card__pick_correct_number():
@@ -128,7 +127,7 @@ def test_discard_card__reverses():
     assert s.direction == -1
     s.discard_card(s.players[1], Card('♣', 'K'))
     assert s.direction == 1
-
+2
 
 def test_discard_card__swaps():
     s = mock_setup_round(['♣4 ♡J', '♣K ♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
@@ -208,8 +207,10 @@ def test_run_player__draws_card():
 def test_run_player__draws_card_and_discards():
     """run_player discards drawn card if possible"""
     s = mock_setup_round(['♣4', '♣9'], '♢5 ♢6 ♢7 ♡8', '♡3')
-    player = s.players[0]
-    s.run_player(player)
+    player = s.players[1]
+    assert len(player.hand) == 2
+    s.run_player(player)#this should let the player discard down
+    assert player.hand
     assert len(player.hand) == 1
     assert len(s.stock) == 3
     assert len(s.discards) == 2

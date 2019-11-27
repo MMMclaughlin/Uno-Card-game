@@ -6,7 +6,6 @@ from cards import generate_deck
 
 MAX_PLAYERS = 4
 HAND_SIZE = 7
-
 class Switch:
     """The switch game
 
@@ -130,7 +129,6 @@ class Switch:
         # have player select card
         hands = self.get_normalized_hand_sizes(player)
         card = player.select_card(discardable, hands) if discardable else None
-
         if card:
             # discard card and determine whether player has won
             self.discard_card(player, card)
@@ -160,7 +158,7 @@ class Switch:
         sufficient, the maximum possible number of cards is picked.
         """
         # repeat n times
-        for i in range(1, n):
+        for i in range(0, n):
             # if no more card in stock pile
             if not self.stock:
                 # add back discarded cards (but not top card)
@@ -176,6 +174,7 @@ class Switch:
             card = self.stock.pop()
             # and add to hand
             player.hand.append(card)
+            print(player.hand)
         return i
 
     def can_discard(self, card):
