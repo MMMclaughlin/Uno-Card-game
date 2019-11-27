@@ -36,4 +36,4 @@
   
   v1.1.13 [2019-11-26]: Fixed so that discarding 8 actually skips a players turn 
   
-  
+  v1.1.14 [2019-11-26]: Updated and fixed docstrings with Parameters and returns
