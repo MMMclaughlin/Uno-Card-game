@@ -14,6 +14,12 @@ def print_game_menu():
 
 
 def print_player_info(player, top_card, hands):
+    """Prints the info of the current players turn such as his/her hand
+
+    --Parameters:
+        Current player, the top card of the discard pile, each players hands sizes
+
+    """
     print("\nHANDS: " + str(hands))
     print("PLAYER: " + player.name)
     if not player.is_ai:
@@ -22,6 +28,12 @@ def print_player_info(player, top_card, hands):
 
 
 def print_discard_result(discarded, card):
+    """This outputs the information of which card was discarded and allow them to track the games history
+
+    Parameters:
+        Boolean if the card was able to be discarded
+        The card being discarded
+        """
     if discarded:
         print("Discarded: " + str(card) + "\n")
     else:
@@ -29,7 +41,12 @@ def print_discard_result(discarded, card):
 
 
 def print_winner_of_game(player):
-    """print winner information"""
+    """print winner information
+
+    --Parameters
+            Winning player
+
+    """
     print_message('\n'+80*'-')
     print_message("Woohoo!!! Winner of the game is: " + player.name)
     print_message(80*'-')
@@ -41,12 +58,22 @@ def say_goodbye():
 
 
 def print_message(msg):
+    """takes an argument and outputs it
+
+    Parameters:
+        Any printable object to be output to the Player.
+    """
     print(msg)
 
 
 # helper method for get_int_input method
 def convert_to_int(string):
-    """converts string to int"""
+    """converts string to int
+
+    --parameters: takes a string
+
+    --returns the given string if possible as an integer or -1 to represent failure to do so
+    """
     result = -1
     try:
         result = int(string)
@@ -57,7 +84,16 @@ def convert_to_int(string):
 
 # methods get information from user
 def get_int_input(min, max):
-    """get int value from user"""
+    """get int value from user
+
+    --parameters: takes a minimum integer and a maximum integer
+
+    if the given value is not less than maximum and greater than minimum or is not an integer we ask for an int again.
+
+    --returns:
+      the given integer value the user gives
+
+    """
     choice = -1
     while choice < min or choice > max:
         print("> ", end="")
@@ -68,14 +104,24 @@ def get_int_input(min, max):
 
 
 def get_string_input():
-    """get word from user"""
+    """get word from user
+
+    --returns:
+     the string a user gives"""
     print("> ", end="")
     s = input()
     return s
 
 
 def get_player_information(MAX_PLAYERS):
-    """get player information"""
+    """get player information
+
+    Parameters:
+        Max platers the game can take
+    Returns:
+        A list of player names
+
+    """
     import random
     from players import Player, SimpleAI, SmartAI
 
@@ -94,20 +140,29 @@ def get_player_information(MAX_PLAYERS):
     # how many AI players? ensure there are at least 2 players
     min = 1 if (len(players) == 1) else 0
     max = MAX_PLAYERS - no_of_players
-    print(f"\nHow many ai players [{min:d}-{max:d}]:")
-    no_of_players = get_int_input(min, max)
-    # for each ai player, get name
-    for name in ai_names[:no_of_players]:
-        if random.choice([True, False]):
-            players.append(SimpleAI(name))
-        else:
-            players.append(SmartAI("Smart "+name))
+    if not no_of_players==MAX_PLAYERS:
+        print(f"\nHow many ai players [{min:d}-{max:d}]:")
+        no_of_players = get_int_input(min, max)
+        # for each ai player, get name
+        for name in ai_names[:no_of_players]:
+            if random.choice([True, False]):
+                players.append(SimpleAI(name))
+            else:
+                players.append(SmartAI("Smart "+name))
 
     return players
 
 
 def select_card(cards):
-    """select card from hand"""
+    """select card from hand
+
+    parameters:
+    A list of cards the player is able to discard to fit the top card.
+
+    Returns:
+        A the card the user has chosen to discard
+
+    """
     print(f"Please select from one of the following cards: [1-{len(cards):d}]")
     for i, card in enumerate(cards, 1):
         print(str(i) + " - " + str(card))
@@ -121,7 +176,14 @@ def select_card(cards):
 
 
 def select_player(players):
-    """select other player"""
+    """select other player
+
+    Parameters:
+        The players in the game
+    Returns:
+        The chosen player
+
+    """
     print(f"Please select from one of the following players: [1-{len(players):d}]")
     # print out for each player in players
     for i in range(len(players)):

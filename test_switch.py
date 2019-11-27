@@ -93,7 +93,9 @@ def test_can_discard__allows_ace():
     s = mock_setup_round([], '', '♣5')
     assert s.can_discard(Card('♢', 'A'))
     assert s.can_discard(Card('♡', 'A'))
-    assert s.can_discard(Card('♠', 'K'))
+    assert s.can_discard(Card('♠', 'A'))
+    assert not s.can_discard(Card('♠', 'K')) # this checks that it is specificaly aces that are working and not any card
+
 
 
 def test_can_discard__allows_queen():
@@ -142,7 +144,6 @@ def test_get_normalized_hand_sizes():
     assert s.get_normalized_hand_sizes(s.players[0]) == [1, 2, 3]
     assert s.get_normalized_hand_sizes(s.players[1]) == [2, 3, 1]
     assert s.get_normalized_hand_sizes(s.players[2]) == [3, 1, 2]
-
     s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3', direction=-1)
     assert s.get_normalized_hand_sizes(s.players[0]) == [1, 3, 2]
     assert s.get_normalized_hand_sizes(s.players[1]) == [2, 1, 3]
@@ -170,7 +171,7 @@ def test_run_player__adheres_to_skip_flag():
 
 def test_run_player__adheres_to_draw2_flag():
     """run_player adheres to switch.draw2"""
-    s = mock_setup_round(['', ''], '♢5 ♣6 ♣7', '♢3', draw2=True)
+    s = mock_setup_round(['', ''], '♢5 ♣7 ♣8', '♢3', draw2=True)
     player = s.players[1]
     s.run_player(player)
     assert len(player.hand) == 2
@@ -206,11 +207,17 @@ def test_run_player__draws_card():
 
 def test_run_player__draws_card_and_discards():
     """run_player discards drawn card if possible"""
-    s = mock_setup_round(['♣4', '♣9'], '♢5 ♢6 ♢7 ♡8', '♡3')
+    s = mock_setup_round(['♣4', '♣9'], '♢5 ♢6 ♢7 ♡8', '♡3 ')
     player = s.players[1]
-    assert len(player.hand) == 2
     s.run_player(player)#this should let the player discard down
     assert player.hand
     assert len(player.hand) == 1
     assert len(s.stock) == 3
     assert len(s.discards) == 2
+def test_unplayable_game():
+    """How does the game handle all the players being unable to discard a card"""
+    s = mock_setup_round(['♣4', '♣9'], '♣5 ♣6 ♣7 ♣8', '♡3 ♢A')
+    player=s.players[0]
+    for i in range(0,5):
+        s.run_player(player)
+        assert len(player.hand)==i+2
