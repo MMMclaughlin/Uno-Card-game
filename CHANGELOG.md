@@ -37,3 +37,6 @@
   v1.1.13 [2019-11-26]: Fixed so that discarding 8 actually skips a players turn 
   
   v1.1.14 [2019-11-27]: Created a new test for a player not being able to play until the discard pile is shuffled back in.
+  
+  v1.1.15 [2019-11-27]:Removed Dorothy from the list of AI player names as there is never a case where all 4 ai players
+  are needed.
