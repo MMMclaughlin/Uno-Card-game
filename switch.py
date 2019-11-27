@@ -6,7 +6,6 @@ from cards import generate_deck
 
 MAX_PLAYERS = 4
 HAND_SIZE = 7
-
 class Switch:
     """The switch game
 
@@ -91,6 +90,7 @@ class Switch:
         self.draw4 = False
 
     def run_player(self, player):
+        print("current discards",self.discards)
         """Process a single player's turn.
 
         Parameters:
@@ -166,6 +166,7 @@ class Switch:
         sufficient, the maximum possible number of cards is picked.
         """
         # repeat n times
+
         for i in range(1, n+1):
             # if no more card in stock pile
             if not self.stock:
