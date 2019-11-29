@@ -25,7 +25,7 @@ Some discards have special effects on the game flow:
 | 2     | Same suit or value | Next player must draw two stock cards at the beginning of his turn      |
 | 8     | Same suit or value | Next player is skipped and the turn proceeds with the subsequent player |
 | J     | Same suit or value | The player must swap his hand with the hand of any other player         |
-| Q     | Anytime            | Next player must draw four stock cards at the beginning of his turn     |
+| Q     |s  Anytime            | Next player must draw four stock cards at the beginning of hiturn     |
 | K     | Same suit or value | The direction of game changes before the start of the next players turn |
 | A     | Anytime            | None                                                                    |
 

@@ -42,3 +42,4 @@
   
   v1.1.16 [2019-11-27]:Removed Dorothy from the list of AI player names as there is never a case where all 4 ai players
   are needed.
+  v1.1.17 [2019-11-29]:Normalised hand sizes passed the test but the actual interface was incorrect

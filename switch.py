@@ -124,8 +124,8 @@ class Switch:
             UI.print_message('{} draws {} cards.'.format(player.name, picked))
 
         top_card = self.discards[-1]
-        hand_sizes = [len(p.hand) for p in self.players]
-        UI.print_player_info(player, top_card, hand_sizes)
+        hands = self.get_normalized_hand_sizes(player)
+        UI.print_player_info(player, top_card, hands)
 
         # determine discardable cards
         discardable=[]
@@ -170,7 +170,7 @@ class Switch:
         for i in range(1, n+1):
             # if no more card in stock pile
             if not self.stock:
-                # add back discarded cards (but not top card)
+                # add back d6iscarded cards (but not top card)
                 if len(self.discards) == 1:
                     UI.print_message("All cards distributed")
                     return i-1
@@ -281,6 +281,7 @@ class Switch:
         idx = self.players.index(player)
         # rotate list so that given player is first
         sizes = sizes[idx:] + sizes[:idx]
+        print(self.direction)
         # if direction is counter-clockwise, reverse the order and
         # bring given player back to the front
         if self.direction == -1:
